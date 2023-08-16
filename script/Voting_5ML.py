@@ -89,7 +89,8 @@ def create_parser():
         description="THP prediction is made on the PLMTHP model"
     )
     parser.add_argument(
-        "--trainpos",
+        "--trainpos", 
+        "-i_pos",
         type=pathlib.Path,
         required=True,
         default='',

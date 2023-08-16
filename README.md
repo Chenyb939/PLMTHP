@@ -1,18 +1,22 @@
-# PLMTHP
-An Ensemble Framework for Tumor Homing Peptide Prediction based on Protein Language Model
+# PLMTHP：An Ensemble Framework for Tumor Homing Peptide Prediction based on Protein Language Model
+
+ Tumor homing peptides (THPs) play a significant role in recognizing and specifically binding to tumor cells. Traditional experimental methods can accurately identify THPs but often suffer from high measurement costs and long experimental cycles. In-silicon methods can rapidly screen THPs, thereby accelerating the experimental process. Existing THPs prediction methods rely on constructing peptide sequence features and machine learning approaches. These methods require feature engineering and exhibit weak robustness. In this study, we proposed a method called PLMTHP (Protein Language Model of Tumor Homing Peptides) based on protein language model encoding and integrate multiple machine learning models.
 
 </details>
 
 <details open><summary><b>Table of contents</b></summary>
-- [Installation ](#installation-)
-- [Quick start ](#quick-start-)
-- [Training Your Own Model ](#training-your-own-model-)
-- [Citations ](#citations-)
+
+
+- [PLMTHP：An Ensemble Framework for Tumor Homing Peptide Prediction based on Protein Language Model](#plmthpan-ensemble-framework-for-tumor-homing-peptide-prediction-based-on-protein-language-model)
+  - [Installation ](#installation-)
+  - [Quick start ](#quick-start-)
+  - [Training Your Own Model ](#training-your-own-model-)
+  - [Citations ](#citations-)
 </details>
 
 
 ## Installation <a name="Installation"></a>
-To use the PLMTHP model, make sure you start from an environment with python => 3.7 , ESM-2, and  pytorch installed.
+To use the PLMTHP model, make sure you start from an environment with python = 3.7 , ESM-2, and  pytorch installed.
 Then clone this repository by calling: 
 
 ```bash
@@ -28,34 +32,29 @@ Or PLMTHP can be installed using conda by calling:
 conda install -r environment.yaml
 ```
 ## Quick start <a name="quickstart"></a>
+
 1. Train your own PLMTHP model by calling:
 ```bash
 python ./script/Voting_5ML.py --trainpos ./data/Processed_data/THP_train.txt --trainneg ./data/Processed_data/non_THP_train.txt --output_dir [output_dir]
 ```  
-1. Test your model by calling:
+2. Test your model by calling:
 ```bash
 python ./script/Voting_5ML.py --test ./data/Processed_data/test.txt  --output_dir [output_dir]
 ```  
 ## Training Your Own Model <a name="ownmodel"></a>
 PLMTHP allows you to train your own models using your custom dataset. Follow these steps to train your own model:
 1. Prepare your data in fasta format.
-2. Generate feature file by calling: (?)
+2. Train and test your own PLMTHP model useing `Voting_5ML.py`:
 
 ```bash
-python ./script/AAC_DPC_Feature_Extraction.py --
-```  
-
-3. Train and test your own PLMTHP model useing Voting_5ML.py:
-
-```bash
-usage: esm-fold [-h] -i FASTA -o PDB [--num-recycles NUM_RECYCLES]
-                [--max-tokens-per-batch MAX_TOKENS_PER_BATCH]
-                [--chunk-size CHUNK_SIZE] [--cpu-only] [--cpu-offload]
+usage: Voting_5ML [-i_pos] FASTA [-o] DIR [--num-recycles NUM_RECYCLES]
+                  [--max-tokens-per-batch MAX_TOKENS_PER_BATCH]
+                  [--chunk-size CHUNK_SIZE] [--cpu-only] [--cpu-offload]
 
 optional arguments:
   -h, --help            show this help message and exit
-  -i FASTA, --fasta FASTA
-                        Path to input FASTA file
+  -i_pos FASTA, --trainpos FASTA
+                        Path of pos train data file
   -o PDB, --pdb PDB     Path to output PDB directory
   --num-recycles NUM_RECYCLES
                         Number of recycles to run. Defaults to number used in
