@@ -4,12 +4,10 @@ An Ensemble Framework for Tumor Homing Peptide Prediction based on Protein Langu
 </details>
 
 <details open><summary><b>Table of contents</b></summary>
-
-- [PLMTHP](#plmthp)
-  - [Installation ](#installation-)
-  - [Quick start ](#quick-start-)
-  - [Training Your Own Model ](#training-your-own-model-)
-  - [Citations ](#citations-)
+- [Installation ](#installation-)
+- [Quick start ](#quick-start-)
+- [Training Your Own Model ](#training-your-own-model-)
+- [Citations ](#citations-)
 </details>
 
 
