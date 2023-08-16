@@ -117,26 +117,26 @@ def create_parser():
         help='Path of output file'
     )
     parser.add_argument(
-        "-model_location",
+        "--model_location",
         type=str,
         default='esm2_t36_3B_UR50D',
         help="PyTorch model file OR name of pretrained model to download (see README for models)",
     )
     parser.add_argument(
-        "-toks_per_batch",
+        "--toks_per_batch",
         type=int,
         default=8192,
         help="maximum batch size"
     )
     parser.add_argument(
-        "-repr_layers",
+        "--repr_layers",
         type=int,
         default=36,
         nargs="+",
         help="layers indices from which to extract representations (0 to num_layers, inclusive)",
     )
     parser.add_argument(
-        "-include",
+        "--include",
         type=str,
         nargs="+",
         choices=["mean", "per_tok", "bos", "contacts"],
@@ -144,7 +144,7 @@ def create_parser():
         help="specify which representations to return",
     )
     parser.add_argument(
-        "-nogpu",
+        "--nogpu",
         action="store_true",
         default="true",
         help="Do not use GPU even if available"
