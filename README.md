@@ -47,31 +47,32 @@ PLMTHP allows you to train your own models using your custom dataset. Follow the
 2. Train and test your own PLMTHP model useing `Voting_5ML.py`:
 
 ```bash
-usage: Voting_5ML [-i_pos] FASTA [-o] DIR [--num-recycles NUM_RECYCLES]
-                  [--max-tokens-per-batch MAX_TOKENS_PER_BATCH]
-                  [--chunk-size CHUNK_SIZE] [--cpu-only] [--cpu-offload]
+usage: Voting_5ML [-i_pos] FASTA [-i_neg] FASTA [-t] FASTA 
+                  [-o] DIR [--model_location MODEL_LOCATION]
+                  [--toks_per_batch TOKS_PER_BATCH]
+                  [--repr_layers REPR_LAYERS][--include INCLUDE]
+                  [--nogpu NOGPU]
 
 optional arguments:
   -h, --help            show this help message and exit
   -i_pos FASTA, --trainpos FASTA
                         Path of pos train data file
-  -o PDB, --pdb PDB     Path to output PDB directory
-  --num-recycles NUM_RECYCLES
-                        Number of recycles to run. Defaults to number used in
-                        training (4).
-  --max-tokens-per-batch MAX_TOKENS_PER_BATCH
-                        Maximum number of tokens per gpu forward-pass. This
-                        will group shorter sequences together for batched
-                        prediction. Lowering this can help with out of memory
-                        issues, if these occur on short sequences.
-  --chunk-size CHUNK_SIZE
-                        Chunks axial attention computation to reduce memory
-                        usage from O(L^2) to O(L). Equivalent to running a for
-                        loop over chunks of of each dimension. Lower values
-                        will result in lower memory usage at the cost of
-                        speed. Recommended values: 128, 64, 32. Default: None.
-  --cpu-only            CPU only
-  --cpu-offload         Enable CPU offloading
+  -i_neg FASTA, --trainneg FASTA
+                        Path of neg train data file
+  -t FASTA, --test FASTA
+                        Path of test data file 
+  -o DIR, --output_dir DIR     
+                        Path to output file directory
+  --model_location MODEL_LOCATION
+                        PyTorch model file OR name of pretrained model to 
+                        download.Default: esm2_t36_3B_UR50D.
+  --toks_per_batch TOKS_PER_BATCH
+                        Maximum batch size.Default: 8192.
+  --repr_layers REPR_LAYERS
+                        layers indices from which to extract representations 
+                        (0 to num_layers, inclusive).Default: 36.
+  --include INCLUDE     Specify which representations to return.Default: mean.                      
+  --nogpu NOGPU         Do not use GPU even if available.Default: true.
 ```  
 
 ## Citations <a name="citations"></a>
